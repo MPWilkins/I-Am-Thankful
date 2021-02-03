@@ -1,0 +1,58 @@
+{% extends 'layoutLogged.html' %}
+class="table table-striped"{% block body %}
+<h4>Glad to see you here {{ user_name.name }}</h4>
+{% from "includes/_formhelpers.html" import render_field%}
+<form method="POST" action="/IAmThankful">
+   {{ form.csrf_token }}
+   <div class="form-group" id="widthField">
+      {{ form.entry.label(class="form-control-label") }}
+      {{ form.entry(class="form-control form-control-lg") }}
+   </div>
+   <div class="align"><input type="submit" class="btn btn-primary" value="Submit"></div>
+   <br>   
+   <br>   
+</form>
+<div>
+   <input class="form-control" id="userInput" type="text" placeholder="Filter Entries"><br>
+   <table class="table table-striped">
+      <thead>
+      <tr>
+         <th>
+            I Am Thankful
+         </th>
+         <th>
+            Date
+         </th>
+         <th>
+            <!-- Delete Feature below -->
+         </th>
+      </tr>
+      </thead>
+      <tbody  id="userTable">
+      {% for list in lists %}
+      <tr>
+         <td>{{ list.entry }}</td>
+         <td>{{ moment(list.entry_date).format('L') }}</td>
+         <td>
+            <a href="/delete/{{list.id}}"><button class="btn btn-danger"><i class="far fa-trash-alt"></i></button></a>
+         </td>
+      </tr>
+      {% endfor %}
+   </tbody>
+   </table>
+</div>
+
+
+<script>
+   $(document).ready(function(){
+  $("#userInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#userTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
+{% endblock %}
+

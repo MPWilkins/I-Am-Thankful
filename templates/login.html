@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<h4>Login</h4>
+{% from "includes/_formhelpers.html" import render_field%}
+<form method="POST" action="/login">  
+   <div class="form-group">
+      {{ form.username.label(class="form-control-label") }}
+      {{ form.username(class="form-control form-control-lg") }}
+   </div>
+   <div class="form-group">
+      {{ form.login_password.label(class="form-control-label") }}
+      {{ form.login_password(class="form-control form-control-lg") }} 
+   </div>
+   <div class="align"><input type="submit" class="btn btn-primary" value="Login"></div>  
+   {{ form.csrf_token }}
+</form>
+{% endblock %}

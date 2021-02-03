@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+   <link rel="stylesheet" href="../static/style.css">
+
+   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+   {{ moment.include_jquery() }}
+   {{ moment.include_moment() }}
+
+   <title>I Am Thankful</title>
+</head>
+
+<body>
+   {% include 'includes/_navbarLoggedIn.html' %}
+
+   <div class="container">
+      {% include 'includes/_messages.html' %}
+      {% block body %}{% endblock %}
+   </div>
+</body>
+
+{% block script %}
+   {{ moment.include_moment() }}
+{% endblock %}
+
+</html>
